@@ -15,7 +15,7 @@ const ShopContextProvider = (props) => {
 
   const currency = "₹ ";
   const delivery_fee = Math.floor(Math.random() * (21 - 15) + 15);
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://crickkit-e-commerce-backend.onrender.com";
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
