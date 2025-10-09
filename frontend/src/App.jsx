@@ -19,8 +19,7 @@ import Verify from "./pages/Verify";
 function App() {
   return (
     <>
-      {/* Removed global padding from here */}
-      <div className=""> {/* This div now has no padding */}
+      <div className="">
         <ToastContainer />
         <Navbar />
         <SearchBar />
