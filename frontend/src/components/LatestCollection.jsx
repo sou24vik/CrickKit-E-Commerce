@@ -9,18 +9,14 @@ const LatestCollection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a network delay for a more realistic loading experience
     const timer = setTimeout(() => {
       if (products.length) {
-        // Slice the last 10 products if 'products' represents a chronologically ordered list,
-        // or the first 10 if it's already sorted by "latest" on the backend.
-        // Assuming 'products' from context is ordered by latest for now.
-        setLatestProducts(products.slice(0, 10)); 
+        setLatestProducts(products.slice(0, 10));
       }
       setLoading(false);
-    }, 500); // Small delay to show loading state
+    }, 500);
 
-    return () => clearTimeout(timer); // Cleanup timer on unmount
+    return () => clearTimeout(timer);
   }, [products]);
 
   return (

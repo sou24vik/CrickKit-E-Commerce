@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Renamed 'visible' for clarity
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const {
     setShowSearch,
@@ -25,17 +25,15 @@ const Navbar = () => {
   };
 
   const navLinkClasses = ({ isActive }) =>
-    `relative py-2 px-3 text-lg font-medium transition-colors duration-300 ${
-      isActive
-        ? "text-blue-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-4/5 after:h-[2px] after:bg-blue-600" // Active link style
-        : "text-gray-700 hover:text-blue-500" // Default and hover style
+    `relative py-2 px-3 text-lg font-medium transition-colors duration-300 ${isActive
+      ? "text-blue-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-4/5 after:h-[2px] after:bg-blue-600" // Active link style
+      : "text-gray-700 hover:text-blue-500" // Default and hover style
     }`;
 
   const sidebarNavLinkClasses = ({ isActive }) =>
-    `py-3 pl-8 border-b border-gray-100 text-lg transition-colors duration-200 ${
-      isActive
-        ? "bg-blue-50 text-blue-700 font-semibold"
-        : "text-gray-700 hover:bg-gray-50"
+    `py-3 pl-8 border-b border-gray-100 text-lg transition-colors duration-200 ${isActive
+      ? "bg-blue-50 text-blue-700 font-semibold"
+      : "text-gray-700 hover:bg-gray-50"
     }`;
 
   return (
@@ -134,9 +132,8 @@ const Navbar = () => {
 
       {/* Sidebar menu for small screens */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 bg-white shadow-xl transition-all duration-300 ease-in-out transform ${
-          isSidebarOpen ? "translate-x-0 w-64" : "translate-x-full w-0"
-        }`}
+        className={`fixed inset-y-0 right-0 z-50 bg-white shadow-xl transition-all duration-300 ease-in-out transform ${isSidebarOpen ? "translate-x-0 w-64" : "translate-x-full w-0"
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Close button */}

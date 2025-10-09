@@ -1,7 +1,7 @@
 const NewsLetterBox = () => {
+  
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // Handle subscription logic here
   };
 
   return (

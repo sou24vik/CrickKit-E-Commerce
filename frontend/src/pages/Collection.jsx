@@ -51,7 +51,7 @@ const Collection = () => {
     setSelectedSubCategories((prev) =>
       prev.includes(value)
         ? prev.filter((item) => item !== value)
-        : [...prev, value]
+        : [value]
     );
   };
 
@@ -116,18 +116,16 @@ const Collection = () => {
             <img
               src={assets.dropdown_icon}
               alt="Toggle Filters"
-              className={`h-4 transition-transform duration-300 ${
-                isFilterSidebarOpen ? "rotate-180" : ""
-              }`}
+              className={`h-4 transition-transform duration-300 ${isFilterSidebarOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
           {/* Desktop Filter Sidebar & Mobile Overlay */}
           <div
             ref={sidebarRef}
-            className={`fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out sm:relative sm:transform-none sm:shadow-none sm:border-r sm:border-gray-200 sm:pb-0 ${
-              isFilterSidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } sm:translate-x-0 sm:block`}
+            className={`fixed inset-y-0 left-0 z-40 w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out sm:relative sm:transform-none sm:shadow-none sm:border-r sm:border-gray-200 sm:pb-0 ${isFilterSidebarOpen ? "translate-x-0" : "-translate-x-full"
+              } sm:translate-x-0 sm:block`}
           >
             {/* Close button for mobile sidebar */}
             <div className="sm:hidden flex items-center justify-between p-4 border-b border-gray-200">
@@ -150,21 +148,23 @@ const Collection = () => {
                 Categories
               </p>
               <div className="flex flex-col gap-3 text-sm text-gray-600">
-                {["Men", "Women", "Equipment", "Kids"].map((cat) => (
-                  <label
-                    key={cat}
-                    className="inline-flex items-center cursor-pointer hover:text-gray-800"
-                  >
-                    <input
-                      type="checkbox"
-                      value={cat}
-                      onChange={toggleCategory}
-                      checked={selectedCategories.includes(cat)}
-                      className="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors"
-                    />
-                    <span className="ml-2">{cat}</span>
-                  </label>
-                ))}
+                {
+                  ["Men", "Women", "Equipment", "Kids"].map((cat) => (
+                    <label
+                      key={cat}
+                      className="inline-flex items-center cursor-pointer hover:text-gray-800"
+                    >
+                      <input
+                        type="checkbox"
+                        value={cat}
+                        onChange={toggleCategory}
+                        checked={selectedCategories.includes(cat)}
+                        className="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors"
+                      />
+                      <span className="ml-2">{cat}</span>
+                    </label>
+                  ))
+                }
               </div>
             </div>
 
@@ -174,21 +174,23 @@ const Collection = () => {
                 Type
               </p>
               <div className="flex flex-col gap-3 text-sm text-gray-600">
-                {["Bat", "Ball", "Wicket"].map((subCat) => (
-                  <label
-                    key={subCat}
-                    className="inline-flex items-center cursor-pointer hover:text-gray-800"
-                  >
-                    <input
-                      type="checkbox"
-                      value={subCat}
-                      onChange={toggleSubCategory}
-                      checked={selectedSubCategories.includes(subCat)}
-                      className="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors"
-                    />
-                    <span className="ml-2">{subCat}</span>
-                  </label>
-                ))}
+                {
+                  ["Bat", "Ball", "Wicket"].map((subCat) => (
+                    <label
+                      key={subCat}
+                      className="inline-flex items-center cursor-pointer hover:text-gray-800"
+                    >
+                      <input
+                        type="checkbox"
+                        value={subCat}
+                        onChange={toggleSubCategory}
+                        checked={selectedSubCategories.includes(subCat)}
+                        className="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors"
+                      />
+                      <span className="ml-2">{subCat}</span>
+                    </label>
+                  ))
+                }
               </div>
             </div>
           </div>
