@@ -9,11 +9,11 @@ import { toast } from "react-toastify";
 const Product = () => {
   const { productId } = useParams();
   const { products, currency, addToCart } = useContext(ShopContext);
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate();
 
-  const [productData, setProductData] = useState(null); // Initialize as null
-  const [mainImage, setMainImage] = useState(""); // Renamed for clarity
-  const [selectedSize, setSelectedSize] = useState(""); // Renamed for clarity
+  const [productData, setProductData] = useState(null);
+  const [mainImage, setMainImage] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
 
   const buyNowClickHandler = () => {
     if (selectedSize) {
@@ -28,14 +28,13 @@ const Product = () => {
       const foundProduct = products.find((item) => item._id === productId);
       if (foundProduct) {
         setProductData(foundProduct);
-        setMainImage(foundProduct.image[0]); // Set initial main image
+        setMainImage(foundProduct.image[0]);
       } else {
-        // Handle case where product is not found (e.g., redirect to 404 or collection)
         console.warn("Product not found for ID:", productId);
-        // navigate('/collection'); // Example redirect
+        // navigate('/collection');
       }
     }
-  }, [productId, products]); // Add products to dependency array
+  }, [productId, products]);
 
   if (!productData) {
     return (
@@ -47,27 +46,25 @@ const Product = () => {
   }
 
   return (
-    // Outer container for consistent padding across the page, removed border-t-2
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 md:py-12 transition-opacity ease-in duration-500 opacity-100">
-      {/* Product Data Section - Flex container for image and info */}
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
         {/* Product Image Gallery */}
         <div className="flex flex-col-reverse lg:flex-row lg:gap-4 w-full lg:w-1/2">
-          {/* Thumbnails */}
           <div className="flex lg:flex-col overflow-x-auto lg:overflow-y-auto lg:h-[calc(100vh-200px)] lg:max-h-[600px] justify-start lg:justify-normal w-full lg:w-24 gap-3 scrollbar-hide">
-            {productData.image.map((item, index) => (
-              <img
-                src={item}
-                alt={`Product thumbnail ${index + 1}`}
-                key={index}
-                onClick={() => setMainImage(item)}
-                className={`w-[23%] sm:w-[18%] lg:w-full h-auto object-cover rounded-md cursor-pointer border-2 transition-all duration-200 ease-in-out ${
-                  item === mainImage
+            {
+              productData.image.map((item, index) => (
+                <img
+                  src={item}
+                  alt={`Product thumbnail ${index + 1}`}
+                  key={index}
+                  onClick={() => setMainImage(item)}
+                  className={`w-[23%] sm:w-[18%] lg:w-full h-auto object-cover rounded-md cursor-pointer border-2 transition-all duration-200 ease-in-out ${item === mainImage
                     ? "border-red-500 shadow-md"
                     : "border-gray-200 hover:border-gray-400"
-                }`}
-              />
-            ))}
+                    }`}
+                />
+              ))
+            }
           </div>
           {/* Main Image */}
           <div className="w-full lg:flex-1 h-96 sm:h-[400px] lg:h-[500px] overflow-hidden rounded-lg shadow-lg mb-4 lg:mb-0">
@@ -109,21 +106,22 @@ const Product = () => {
                 Select Size:
               </p>
               <div className="flex flex-wrap gap-3">
-                {productData.sizes.map((item, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedSize(item)}
-                    className={`py-2.5 px-6 rounded-full border border-gray-300 text-base font-medium transition-all duration-200 ease-in-out
-                      ${
-                        selectedSize === item
+                {
+                  productData.sizes.map((item, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedSize(item)}
+                      className={`py-2.5 px-6 rounded-full border border-gray-300 text-base font-medium transition-all duration-200 ease-in-out
+                      ${selectedSize === item
                           ? "bg-red-600 text-white border-red-600 shadow-md scale-105"
                           : "bg-white text-gray-800 hover:bg-gray-100 hover:border-gray-400"
-                      }
+                        }
                     `}
-                  >
-                    {item}
-                  </button>
-                ))}
+                    >
+                      {item}
+                    </button>
+                  ))
+                }
               </div>
             </div>
           )}
@@ -132,7 +130,7 @@ const Product = () => {
               onClick={() => addToCart(productData._id, selectedSize)}
               className="flex-1 flex items-center justify-center gap-2 bg-black text-white px-8 py-3.5 text-lg font-semibold rounded-md shadow-lg
                          hover:bg-gray-800 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={!selectedSize} // Disable if no size is selected
+              disabled={!selectedSize}
             >
               ADD TO CART
             </button>
@@ -140,12 +138,12 @@ const Product = () => {
               onClick={() => buyNowClickHandler()}
               className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-3.5 text-lg font-semibold rounded-md shadow-lg
                          hover:bg-red-700 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={!selectedSize} // Disable if no size is selected
+              disabled={!selectedSize}
             >
               BUY NOW
             </button>
           </div>
-          <hr className="my-8 border-gray-200" /> {/* Thicker, clearer hr */}
+          <hr className="my-8 border-gray-200" />
           <div className="text-sm text-gray-600 mt-5 flex flex-col gap-2">
             <p className="flex items-center gap-2">
               <img
@@ -180,8 +178,6 @@ const Product = () => {
       {/* ------ Description and review Section ------------ */}
       <div className="mt-20">
         <div className="flex border-b border-gray-200 mb-6">
-          {" "}
-          {/* Moved border to bottom for cleaner look */}
           <button className="px-6 py-3 text-base font-semibold text-gray-800 border-b-2 border-red-600 -mb-px bg-gray-50">
             {" "}
             {/* Active tab style */}
