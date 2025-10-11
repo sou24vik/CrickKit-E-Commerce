@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
+
   const {
     navigate,
     backendUrl,
@@ -18,6 +19,7 @@ const PlaceOrder = () => {
     delivery_fee,
     products,
   } = useContext(ShopContext);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -119,7 +121,7 @@ const PlaceOrder = () => {
             { headers: { token } }
           );
 
-          if (response.data.success) {
+          if (responseStripe.data.success) {
             const { session_url } = responseStripe.data;
             window.location.replace(session_url);
           } else {
