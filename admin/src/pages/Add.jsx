@@ -209,9 +209,8 @@ const Add = ({ token }) => {
           {["S", "M", "L", "XL", "XXL"].map((size) => (
             <div key={size} onClick={() => handleToggleSize(size)}>
               <p
-                className={`${
-                  sizes.includes(size) ? "bg-pink-300" : "bg-slate-200"
-                } px-3 py-1 cursor-pointer`}
+                className={`${sizes.includes(size) ? "bg-pink-300" : "bg-slate-200"
+                  } px-3 py-1 cursor-pointer`}
               >
                 {size}
               </p>
@@ -224,9 +223,8 @@ const Add = ({ token }) => {
             .map((size) => (
               <div key={size} onClick={() => handleToggleSize(size)}>
                 <p
-                  className={`${
-                    sizes.includes(size) ? "bg-pink-300" : "bg-slate-200"
-                  } px-3 py-1 cursor-pointer`}
+                  className={`${sizes.includes(size) ? "bg-pink-300" : "bg-slate-200"
+                    } px-3 py-1 cursor-pointer`}
                 >
                   {size}
                 </p>
